@@ -1,0 +1,25 @@
+
+version: "3.8"
+
+services:
+  backend:
+    container_name: shop-vantoi-backend
+    build:
+      context: ./BackEnd/.Net_C#/Shop_VANTOI
+      # Đường dẫn đã được sửa để trỏ đến Dockerfile chính xác
+      dockerfile: ./src/solution_items/chuyennganh.Api/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    volumes:
+      - ./BackEnd/.Net_C#/Shop_VANTOI:/app
+
+  frontend:
+    container_name: shop-vantoai-frontend
+    build:
+      context: ./FrontEnd/shop-vantoi
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:80"
+    volumes:
+      - ./FrontEnd/shop-vantoi:/app
